@@ -4,8 +4,8 @@ import axios from "axios";
 export const PokemonsContext = createContext();
 
 const PokemonsProviders = (props) => {
+  const [results, setResults] = useState([]);
   const [search, searchPokemon] = useState({ pokemon: "", type: "" });
-  const [result, setResult] = useState([]);
 
   const { pokemon, type } = search;
 
@@ -17,7 +17,7 @@ const PokemonsProviders = (props) => {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
         const resultado = await axios.get(url);
         /* console.log(resultado.data); */
-        setResult(resultado.data);
+        setResults(resultado.data);
       };
       getPokemon();
     }
@@ -25,8 +25,10 @@ const PokemonsProviders = (props) => {
   return (
     <PokemonsContext.Provider
       value={{
+        results,
         searchPokemon,
         setQuery,
+        query,
       }}
     >
       {props.children}

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import CardList from "./components/CardList";
+import PokemonList from "./components/PokemonList";
 import Formulario from "./components/Formulario";
 import TypesProvider from "./context/TypesContext";
 import PokemonsProvider from "./context/PokemonsContext";
@@ -10,7 +10,7 @@ function App() {
       <PokemonsProvider>
         <h1 className="text-center">Pokedex</h1>
         <Formulario />
-        <CardList />
+        <PokemonList />
       </PokemonsProvider>
     </TypesProvider>
   );
