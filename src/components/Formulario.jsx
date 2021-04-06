@@ -1,19 +1,58 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { TypesContext } from "../context/TypesContext";
+import { PokemonsContext } from "../context/PokemonsContext";
 
 const Formulario = () => {
+  const [search, setSearch] = useState({
+    pokemon: "",
+    type: "",
+  });
+
+  // función para leer el pokemon o el tipo
+
+  const getDataSearch = (e) => {
+    setSearch({
+      ...search,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const { types } = useContext(TypesContext);
+
+  const { searchPokemon, setQuery } = useContext(PokemonsContext);
+
   return (
-    <form className="w-full m-5">
-      <div className="grid grid-cols-3 gap-6">
-        <div className="">
+    <form
+      className=""
+      onSubmit={(e) => {
+        e.preventDefault();
+        searchPokemon(search);
+        setQuery(true);
+      }}
+    >
+      <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+        <div className="w-auto">
           <input
             type="text"
             name="pokemon"
             placeholder="Buscar pokemon por nombre"
+            className="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
+            onChange={getDataSearch}
           />
         </div>
-        <div>
-          <select name="types" id="" className="px-4 py-3 rounded-full">
+        <div className="w-full">
+          <select
+            name="type"
+            id=""
+            className="block w-full mt-0 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
+            onChange={getDataSearch}
+          >
             <option value="">--Selecciona Tipo--</option>
+            {types.map((type) => (
+              <option key={type.name} value={type.name}>
+                {type.name}
+              </option>
+            ))}
           </select>
         </div>
         <div>
