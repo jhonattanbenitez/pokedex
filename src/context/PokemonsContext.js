@@ -15,9 +15,12 @@ const PokemonsProviders = (props) => {
     if (query) {
       const getPokemon = async () => {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
-        const resultado = await axios.get(url);
-        /* console.log(resultado.data); */
-        setResults(resultado.data);
+        await axios
+          .get(url)
+          .then((response) => setResults(response.data))
+          .catch((error) => console.log(error));
+
+        console.log(type);
       };
       getPokemon();
     }
@@ -26,9 +29,9 @@ const PokemonsProviders = (props) => {
     <PokemonsContext.Provider
       value={{
         results,
+        query,
         searchPokemon,
         setQuery,
-        query,
       }}
     >
       {props.children}

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PokemonList from "./components/PokemonList";
 import Formulario from "./components/Formulario";
 import TypesProvider from "./context/TypesContext";
