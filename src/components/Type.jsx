@@ -120,6 +120,12 @@ const Type = ({ type }) => {
           {type.toUpperCase()}
         </span>
       );
+    case "fighting":
+      return (
+        <span className="inline-block bg-yellow-800 rounded-full px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2">
+          {type.toUpperCase()}
+        </span>
+      );
 
     default:
       break;
